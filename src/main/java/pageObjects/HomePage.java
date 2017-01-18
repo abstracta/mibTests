@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by USER on 13-Jan-17.
  */
 public class HomePage extends AbstractPageObject{
-    @FindBy(name = "Get a QUICK QUOTE") private WebElement getAQuickQuoteButton;
+    @FindBy(xpath = ".//*[@title = 'Get a QUICK QUOTE']") private WebElement getAQuickQuoteButton;
 
     public HomePage(WebDriver driver){
         super(driver);

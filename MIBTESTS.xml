@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="MIBTESTS" verbose="3" >
+    <!-- Configuracion del browser y ambiente -->
+    <parameter name="url" value="https://mibinsure.com"></parameter>
+    <parameter name="userName" value="ABSTRACTA"></parameter>
+    <parameter name="pass" value="movistar123"></parameter>
+    <parameter name="browser" value="Chrome"></parameter>
+
+    <test name="test">
+        <classes>
+            <class name="tests.TestInstantQuote"></class>
+        </classes>
+    </test>
+</suite>

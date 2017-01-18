@@ -1,6 +1,8 @@
 package pageObjects;
 
+import classes.Enums.FieldType;
 import classes.Enums.Locators;
+import classes.Objects.FieldToComplete;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -20,13 +22,29 @@ public class AbstractPageObject {
         PageFactory.initElements(driver, this);
     }
 
+    public String getFieldXpath(FieldToComplete fieldToComplete){
+        String xpath = "//*[contains(text(), '"+fieldToComplete.getFieldName()+"')]/ancestor::div[@class = 'fieldbox']";
+        switch (fieldToComplete.getFieldType()){
+            case TEXTBOX:
+                xpath = xpath + "//input";
+                break;
+            case SELECT_FIELD:
+                xpath = xpath + "//select";
+                break;
+            case CHECKBOX:
+                xpath = xpath + "//input[@value = '"+fieldToComplete.getValue()+"']";
+        }
+
+        return xpath;
+    }
+
     public WebElement findElement(Locators locator, String identificator) throws Exception {
         return driver.findElement(by(locator, identificator));
     }
 
-    public WebElement getField(String name) throws Exception {
+    public WebElement getField(FieldToComplete fieldToComplete) throws Exception {
         try {
-            return findElement(Locators.NAME, name);
+            return findElement(Locators.XPATH, getFieldXpath(fieldToComplete));
         }catch(Exception ex){
             throw new Exception("There is an error finding the field. Error : " + ex.getMessage());
         }
