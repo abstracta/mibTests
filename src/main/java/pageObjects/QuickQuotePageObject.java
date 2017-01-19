@@ -1,24 +1,29 @@
-package pageObjects.Forms;
+package pageObjects;
 
 import classes.Enums.IntendedUseVehicle;
 import classes.Objects.FieldToComplete;
 import org.openqa.selenium.WebDriver;
-import pageObjects.AbstractPageObject;
+import pageObjects.CommonPageObject;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by USER on 13-Jan-17.
  */
-public class InstantQuickQuote extends AbstractPageObject{
-    public InstantQuickQuote(WebDriver driver){
+public class QuickQuotePageObject extends CommonPageObject {
+    public QuickQuotePageObject(WebDriver driver){
         super(driver);
     }
 
     public void completeFormStepOne(List<FieldToComplete> informationForFields, List<IntendedUseVehicle> vehicleIntentededUse) throws Exception {
         getAbstractFormInstance().completeForm(informationForFields);
         getAbstractFormInstance().selectCheckboxesForIntendedUse(vehicleIntentededUse);
-        //toDo : Siguiente y siguiente FORM
+        getAbstractFormInstance().goToNextForm();
+    }
+
+    public void completeFormStepTwo(List<FieldToComplete> informationForFields) throws Exception {
+        getAbstractFormInstance().completeForm(informationForFields);
+        getAbstractFormInstance().goToNextForm();
+        String hola = "";
     }
 }

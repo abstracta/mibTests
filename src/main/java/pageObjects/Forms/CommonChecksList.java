@@ -4,12 +4,12 @@ import classes.Enums.IntendedUseVehicle;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pageObjects.AbstractPageObject;
+import pageObjects.CommonPageObject;
 
 /**
  * Created by USER on 18-Jan-17.
  */
-public class AbstractChecksList extends AbstractPageObject {
+public class CommonChecksList extends CommonPageObject {
 
     // All the checkboxes for "Intended use of the vehicle"
     @FindBy(xpath = ".//input[@ng-true-value = '2458']") private WebElement intendedUseSocialAndDomestic;
@@ -23,7 +23,7 @@ public class AbstractChecksList extends AbstractPageObject {
     @FindBy(xpath = ".//input[@ng-true-value = '16381']") private WebElement intendedUseFlammable;
     @FindBy(xpath = ".//input[@ng-true-value = '16382']") private WebElement intendedUseEmergency;
 
-    public AbstractChecksList(WebDriver driver){
+    public CommonChecksList(WebDriver driver){
         super(driver);
     }
 

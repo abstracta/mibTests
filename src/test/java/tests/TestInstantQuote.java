@@ -5,7 +5,7 @@ import classes.Enums.FieldType;
 import classes.Enums.IntendedUseVehicle;
 import classes.Objects.FieldToComplete;
 import org.testng.annotations.Test;
-import pageObjects.Forms.InstantQuickQuote;
+import pageObjects.QuickQuotePageObject;
 import pageObjects.HomePage;
 
 import java.util.ArrayList;
@@ -21,10 +21,11 @@ public class TestInstantQuote extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.clickOnQuickQuote();
 
-        InstantQuickQuote quickQuote = new InstantQuickQuote(driver);
+        QuickQuotePageObject quickQuote = new QuickQuotePageObject(driver);
         List<FieldToComplete> fields = new ArrayList();
         List<IntendedUseVehicle> carFields = new ArrayList();
 
+        // FORM NUMBER 1 //
         fields.add(new FieldToComplete("Year of Manufacture", "2015", FieldType.SELECT_FIELD));
         fields.add(new FieldToComplete("Make of the vehicle", "Acura", FieldType.SELECT_FIELD));
         fields.add(new FieldToComplete("Model of the vehicle", "2.3CL", FieldType.SELECT_FIELD));
@@ -40,5 +41,28 @@ public class TestInstantQuote extends BaseTest {
         carFields.add(IntendedUseVehicle.CONNECTION_WITH_BUSINESS);
 
         quickQuote.completeFormStepOne(fields, carFields);
+        fields.clear();
+        carFields.clear();
+
+        // FORM NUMBER 2 //
+        fields.add(new FieldToComplete("First name", "Automation", FieldType.TEXTBOX));
+        fields.add(new FieldToComplete("Last name", "Testing", FieldType.TEXTBOX));
+        fields.add(new FieldToComplete("Gender of Insured", "Male", FieldType.CHECKBOX));
+        fields.add(new FieldToComplete("Date of Birth of Insured", "12/18/1990", FieldType.DATEPICKER));
+        fields.add(new FieldToComplete("Do you possess a valid driver", "true", FieldType.CHECKBOX));
+        fields.add(new FieldToComplete("Date insured was first issued a driver", "10/08/2015", FieldType.TEXTBOX));
+        fields.add(new FieldToComplete("Issuing country of driver", "JAMAICA", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("Insured's Occupation", "Accountant", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("Employment Status", "Employed", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("Have you had any motor accidents or claims?", "None at all", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("Insured's parish of residence", "ST.ANN", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("Select Community", "Aboukir", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("Are you a full-time Government Employee?", "false", FieldType.CHECKBOX));
+        fields.add(new FieldToComplete("Are you the sole owner of this vehicle?", "true", FieldType.CHECKBOX));
+        fields.add(new FieldToComplete("Would you like to add a driver?", "false", FieldType.CHECKBOX));
+
+        quickQuote.completeFormStepTwo(fields);
+        fields.clear();
+        carFields.clear();
     }
 }

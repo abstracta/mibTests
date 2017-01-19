@@ -1,7 +1,10 @@
 package classes.Objects;
 
 import classes.Enums.FieldType;
+import javafx.scene.control.DatePicker;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import pageObjects.DatePickerPageObject;
 
 /**
  * Created by USER on 18-Jan-17.
@@ -39,11 +42,17 @@ public class FieldToComplete {
     }
 
     public void completeField(){
-        if (fieldType != FieldType.CHECKBOX){
-            webElement.sendKeys(value);
-        }
-        else{
-            webElement.click();
+        switch (fieldType){
+            case CHECKBOX:
+                webElement.click();
+                break;
+            case DATEPICKER:
+                //toDO : Ver de clickear por JS
+                webElement.click();
+                break;
+            default:
+                webElement.sendKeys(value);
+                break;
         }
     }
 

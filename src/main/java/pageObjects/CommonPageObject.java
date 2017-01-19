@@ -1,23 +1,29 @@
 package pageObjects;
 
-import classes.Enums.FieldType;
 import classes.Enums.Locators;
 import classes.Objects.FieldToComplete;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pageObjects.Forms.AbstractForm;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.Forms.CommonForm;
+
+import java.util.concurrent.TimeUnit;
 
 import static classes.Utils.by;
 
 /**
  * Created by USER on 13-Jan-17.
  */
-public class AbstractPageObject {
-    protected final WebDriver driver;
-    private AbstractForm formsObjects;
+public class CommonPageObject {
+    @FindBy(xpath = ".//*[contains(text(), 'Next')]") public WebElement nextButton;
 
-    public AbstractPageObject(WebDriver driver){
+    protected final WebDriver driver;
+    private CommonForm formsObjects;
+
+    public CommonPageObject(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -32,7 +38,8 @@ public class AbstractPageObject {
                 xpath = xpath + "//select";
                 break;
             case CHECKBOX:
-                xpath = xpath + "//input[@value = '"+fieldToComplete.getValue()+"']";
+                xpath = xpath + "//input[@value = '"+getValueForRadioButton(fieldToComplete.getValue())+"']";
+                break;
         }
 
         return xpath;
@@ -50,12 +57,38 @@ public class AbstractPageObject {
         }
     }
 
-    public AbstractForm getAbstractFormInstance()
-    {
+    public CommonForm getAbstractFormInstance() {
         if (formsObjects != null){
             return formsObjects;
         }else{
-            return new AbstractForm(driver);
+            return new CommonForm(driver);
         }
     }
+
+    public String getValueForRadioButton(String value){
+        String valueOutput = "";
+
+        if (value.equals("true") || value.equals("false")) {
+            valueOutput = value;
+        }else{
+            switch(value){
+                case "Male":
+                    valueOutput = "2468";
+                    break;
+                case "Female":
+                    valueOutput = "2469";
+                    break;
+            }
+        }
+
+        return valueOutput;
+    }
+
+    public void waitLoadingMessage(){
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(by(Locators.ID, "loadImage")));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    }
+
 }

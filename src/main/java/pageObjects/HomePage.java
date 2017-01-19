@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by USER on 13-Jan-17.
  */
-public class HomePage extends AbstractPageObject{
+public class HomePage extends CommonPageObject {
     @FindBy(xpath = ".//*[@title = 'Get a QUICK QUOTE']") private WebElement getAQuickQuoteButton;
 
     public HomePage(WebDriver driver){

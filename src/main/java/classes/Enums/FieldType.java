@@ -6,5 +6,6 @@ package classes.Enums;
 public enum FieldType {
     TEXTBOX,
     SELECT_FIELD,
-    CHECKBOX
+    CHECKBOX,
+    DATEPICKER
 }
