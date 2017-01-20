@@ -19,6 +19,7 @@ import static classes.Utils.by;
  */
 public class CommonPageObject {
     @FindBy(xpath = ".//*[contains(text(), 'Next')]") public WebElement nextButton;
+    @FindBy(xpath = ".//*[contains(text(), 'Submit')]") public WebElement submitButton;
 
     protected final WebDriver driver;
     private CommonForm formsObjects;
@@ -38,7 +39,14 @@ public class CommonPageObject {
                 xpath = xpath + "//select";
                 break;
             case CHECKBOX:
-                xpath = xpath + "//input[@value = '"+getValueForRadioButton(fieldToComplete.getValue())+"']";
+                String otherValue = "";
+
+                if(fieldToComplete.getValue().equals("false"))
+                    otherValue = "No";
+                else
+                    otherValue = "Yes";
+
+                xpath = xpath + "//input[@value = '"+getValueForRadioButton(fieldToComplete.getValue())+"' or @value = '"+otherValue+"']";
                 break;
         }
 

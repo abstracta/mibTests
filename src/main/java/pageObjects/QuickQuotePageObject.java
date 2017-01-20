@@ -24,6 +24,10 @@ public class QuickQuotePageObject extends CommonPageObject {
     public void completeFormStepTwo(List<FieldToComplete> informationForFields) throws Exception {
         getAbstractFormInstance().completeForm(informationForFields);
         getAbstractFormInstance().goToNextForm();
-        String hola = "";
+    }
+
+    public void completeFormStepThree(List<FieldToComplete> informationForFields) throws Exception {
+        getAbstractFormInstance().completeForm(informationForFields);
+        getAbstractFormInstance().clickOnSubmit();
     }
 }

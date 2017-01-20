@@ -48,20 +48,31 @@ public class TestInstantQuote extends BaseTest {
         fields.add(new FieldToComplete("First name", "Automation", FieldType.TEXTBOX));
         fields.add(new FieldToComplete("Last name", "Testing", FieldType.TEXTBOX));
         fields.add(new FieldToComplete("Gender of Insured", "Male", FieldType.CHECKBOX));
-        fields.add(new FieldToComplete("Date of Birth of Insured", "12/18/1990", FieldType.DATEPICKER));
+        fields.add(new FieldToComplete("Date of Birth of Insured", "Dec/18/1990", FieldType.DATEPICKER));
         fields.add(new FieldToComplete("Do you possess a valid driver", "true", FieldType.CHECKBOX));
-        fields.add(new FieldToComplete("Date insured was first issued a driver", "10/08/2015", FieldType.TEXTBOX));
+        fields.add(new FieldToComplete("Date insured was first issued a driver", "Oct/8/2015", FieldType.DATEPICKER));
         fields.add(new FieldToComplete("Issuing country of driver", "JAMAICA", FieldType.SELECT_FIELD));
-        fields.add(new FieldToComplete("Insured's Occupation", "Accountant", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("Occupation", "Accountant", FieldType.SELECT_FIELD));
         fields.add(new FieldToComplete("Employment Status", "Employed", FieldType.SELECT_FIELD));
         fields.add(new FieldToComplete("Have you had any motor accidents or claims?", "None at all", FieldType.SELECT_FIELD));
-        fields.add(new FieldToComplete("Insured's parish of residence", "ST.ANN", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("parish of residence", "ST.ANN", FieldType.SELECT_FIELD));
         fields.add(new FieldToComplete("Select Community", "Aboukir", FieldType.SELECT_FIELD));
         fields.add(new FieldToComplete("Are you a full-time Government Employee?", "false", FieldType.CHECKBOX));
         fields.add(new FieldToComplete("Are you the sole owner of this vehicle?", "true", FieldType.CHECKBOX));
         fields.add(new FieldToComplete("Would you like to add a driver?", "false", FieldType.CHECKBOX));
 
         quickQuote.completeFormStepTwo(fields);
+        fields.clear();
+        carFields.clear();
+
+        // FORM NUMBER 3 //
+        fields.add(new FieldToComplete("Is a tracking device installed on this vehicle?", "true", FieldType.CHECKBOX));
+        fields.add(new FieldToComplete("How many years of NCD do you currently enjoy?", "0", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("Do you have valuation/proforma invoice for this vehicle?", "true", FieldType.CHECKBOX));
+        fields.add(new FieldToComplete("Do you have a homeowner", "false", FieldType.CHECKBOX));
+        fields.add(new FieldToComplete("Do you have another motor insurance policy?", "false", FieldType.CHECKBOX));
+
+        quickQuote.completeFormStepThree(fields);
         fields.clear();
         carFields.clear();
     }

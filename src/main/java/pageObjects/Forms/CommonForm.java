@@ -3,6 +3,7 @@ package pageObjects.Forms;
 import classes.Enums.FieldType;
 import classes.Enums.IntendedUseVehicle;
 import classes.Objects.FieldToComplete;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,13 +27,15 @@ public class CommonForm extends CommonPageObject {
     public void completeForm(List<FieldToComplete> list) throws Exception {
         try {
             for (FieldToComplete field : list){
+                waitLoadingMessage();
                 field.setWebElement(getField(field));
-                field.completeField();
+                field.completeField(driver);
                 if (field.getFieldType() == FieldType.DATEPICKER){
                     DatePickerPageObject datePicker = new DatePickerPageObject(driver);
-                    datePicker.clickYear("1980");
-                    datePicker.clickMonth("Feb");
-                    datePicker.clickDay("12");
+                    String[] dateInformation = field.getValue().split("/");
+                    datePicker.clickYear(dateInformation[2]);
+                    datePicker.clickMonth(dateInformation[0]);
+                    datePicker.clickDay(dateInformation[1]);
                 }
             }
         }catch(Exception ex){
@@ -57,6 +60,15 @@ public class CommonForm extends CommonPageObject {
             waitLoadingMessage();
         }catch(Exception ex){
             throw new Exception("There is an error clicking on Next Button : " + ex.getMessage());
+        }
+    }
+
+    public void clickOnSubmit() throws Exception {
+        try{
+            submitButton.click();
+            waitLoadingMessage();
+        }catch(Exception ex){
+            throw new Exception("There is an error clicking on submit Button : " + ex.getMessage());
         }
     }
 

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * Created by USER on 18-Jan-17.
  */
 public class DatePickerPageObject extends CommonPageObject {
-    @FindBy(className = "prev") private WebElement previousYear;
+    @FindBy(xpath = ".//*[@style = 'display: block;']//*[@class = 'prev']") private WebElement previousYear;
 
     public DatePickerPageObject(WebDriver driver){
         super(driver);
@@ -60,11 +60,11 @@ public class DatePickerPageObject extends CommonPageObject {
     }
 
     public WebElement getMonthElement(String month){
-        return driver.findElement(By.xpath(".//*[@class='month'][text() = "+month+"]"));
+        return driver.findElement(By.xpath(".//*[@class='month'][text() = '"+month+"']"));
     }
 
     public WebElement getDayElement(String day){
-        return driver.findElement(By.xpath(".//*[@class='day'][text() = "+day+"]"));
+        return driver.findElement(By.xpath(".//*[@class='day'][text() = '"+day+"']"));
     }
 
 }
