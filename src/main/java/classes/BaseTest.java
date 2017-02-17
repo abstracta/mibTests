@@ -35,10 +35,10 @@ public class BaseTest {
                 options.addArguments("chrome.switches","--disable-extensions");
                 System.setProperty("webdriver.chrome.driver","src/chromedriver.exe");
                 driver = new ChromeDriver(options);
-                driver.manage().window().maximize();
                 break;
         }
 
+        driver.manage().window().maximize();
         driver.get(url);
     }
 

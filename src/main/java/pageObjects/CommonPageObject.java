@@ -99,4 +99,11 @@ public class CommonPageObject {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
+    public void waitLoadingMessageBackEnd() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(by(Locators.XPATH, ".//*[@id='rxload']//img")));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        Thread.sleep(1000);
+    }
+
 }

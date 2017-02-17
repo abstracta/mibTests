@@ -1,8 +1,9 @@
-package pageObjects;
+package pageObjects.FrontEnd;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pageObjects.CommonPageObject;
 
 /**
  * Created by USER on 13-Jan-17.

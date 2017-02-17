@@ -2,11 +2,11 @@ package classes.Objects;
 
 import classes.Enums.FieldType;
 import javafx.scene.control.DatePicker;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
 import pageObjects.DatePickerPageObject;
+
+import java.util.List;
 
 /**
  * Created by USER on 18-Jan-17.
@@ -43,7 +43,9 @@ public class FieldToComplete {
         return fieldType;
     }
 
-    public void completeField(WebDriver driver){
+    public void completeField(WebDriver driver) throws InterruptedException {
+        Thread.sleep(1000);
+
         switch (fieldType){
             case CHECKBOX:
                 webElement.click();
