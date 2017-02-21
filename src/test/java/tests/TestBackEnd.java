@@ -37,7 +37,6 @@ public class TestBackEnd extends BaseTest {
         ClientManagementGeneralTab generalTab = new ClientManagementGeneralTab(driver);
 
         //Policy Details
-        String hola = generalTab.getInformationField("Policy Start Time");
         Assert.assertTrue("Error in 'Policy Start Date' field", (generalTab.getInformationField("Policy Start Date").equals("01/28/2016")));
         Assert.assertTrue("Error in 'Policy Status' field", (generalTab.getInformationField("Policy Status").equals("Accepted")));
         Assert.assertTrue("Error in 'Issuing Company' field", (generalTab.getInformationField("Issuing Company").equals("Advantage General Insurance Company Limited")));
@@ -58,7 +57,10 @@ public class TestBackEnd extends BaseTest {
         Assert.assertTrue("Error in 'Contact Number Work' field", (generalTab.getInformationField("Contact Number Work").equals("876-416-3214")));
 
         //Insured Personal & Contact Detail
-        // Validacion de la tabla fila por fila (HACER UN PAGEOBJECT TABLA)
+        // Hacer un size de la lista del JSON
+        // Iterar esa lista llamando a este metodo y pasandole el rownumber
+        // Hacer assert por cada columna y agarrando el valor de la lista de string que devuelve el metodo
+        generalTab.getInsuredPersonalContactDetailRow(1);
 
         //Vehicle Details
         // Validacion de la tabla fila por fila
@@ -93,7 +95,7 @@ public class TestBackEnd extends BaseTest {
         Assert.assertTrue("Error in 'Infant Seat Replacement' field", (generalTab.getInformationField("Infant Seat Replacement").equals("Not available")));
         Assert.assertTrue("Error in 'Key Replacement' field", (generalTab.getInformationField("Key Replacement").equals("Not available")));
         Assert.assertTrue("Error in 'Limits of Liability' field", (generalTab.getInformationField("Limits of Liability").equals("Not available")));
-        Assert.assertTrue("Error in 'Personal accidents rider' field", (generalTab.getInformationField("Personal accidents rider").equals("Not available")));
+        Assert.assertTrue("Error in 'Personal accidents rider' field", (generalTab.getInformationField("rider").equals("Not available")));
         Assert.assertTrue("Error in 'Manslaughter' field", (generalTab.getInformationField("Manslaughter").equals("Not available")));
         Assert.assertTrue("Error in 'Windscreen Damage' field", (generalTab.getInformationField("Windscreen Damage").equals("Not available")));
         Assert.assertTrue("Error in 'Accident Forgiveness' field", (generalTab.getInformationField("Accident Forgiveness").equals("Not available")));
@@ -115,7 +117,7 @@ public class TestBackEnd extends BaseTest {
         //Discounts
 
         Assert.assertTrue("Error in 'Tracking device installed on the vehicle' field", (generalTab.getInformationField("Tracking device installed on the vehicle").equals("No")));
-        Assert.assertTrue("Error in 'Jamaica Teacher's Association (JTA)' field", (generalTab.getInformationField("Jamaica Teacher's Association (JTA)").equals("No")));
+        Assert.assertTrue("Error in 'Jamaica Teacher's Association (JTA)' field", (generalTab.getInformationField("Jamaica Teacher").equals("No")));
         Assert.assertTrue("Error in 'Jamaica Defense Force (JDF)' field", (generalTab.getInformationField("Jamaica Defense Force (JDF)").equals("No")));
         Assert.assertTrue("Error in 'Are you a Non-Commissioned JDF Officer?' field", (generalTab.getInformationField("Are you a Non-Commissioned JDF Officer?").equals("No")));
         Assert.assertTrue("Error in 'Jamaica Constabulary Force (JCF)' field", (generalTab.getInformationField("Jamaica Constabulary Force (JCF)").equals("No")));
@@ -126,7 +128,7 @@ public class TestBackEnd extends BaseTest {
         Assert.assertTrue("Error in 'NCD' field", (generalTab.getInformationField("NCD").equals("2")));
         Assert.assertTrue("Error in 'Would you like to apply the NCD to this vehicle?' field", (generalTab.getInformationField("Would you like to apply the NCD to this vehicle?").equals("Yes")));
         Assert.assertTrue("Error in 'Do you have valuation/proforma invoice for your vehicle' field", (generalTab.getInformationField("Do you have valuation/proforma invoice for your vehicle").equals("No")));
-        Assert.assertTrue("Error in 'Do you have a home owner’s policy?' field", (generalTab.getInformationField("Do you have a home owner’s policy?").equals("No")));
+        Assert.assertTrue("Error in 'Do you have a home owner’s policy?' field", (generalTab.getInformationField("Do you have a home owner").equals("No")));
         Assert.assertTrue("Error in 'Do you have this policy through Marathon?' field", (generalTab.getInformationField("Do you have this policy through Marathon?").equals("No")));
         Assert.assertTrue("Error in 'How many years with insurance provider' field", (generalTab.getInformationField("How many years with insurance provider").equals("")));
         Assert.assertTrue("Error in 'Please specify provider name' field", (generalTab.getInformationField("Please specify provider name").equals("")));

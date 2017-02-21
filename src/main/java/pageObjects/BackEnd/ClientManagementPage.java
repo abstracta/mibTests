@@ -27,6 +27,7 @@ public class ClientManagementPage extends CommonPageObject {
 
     public void findClientByTrn(String trn) throws Exception {
         try {
+            Thread.sleep(1000);
             trnTextBox.sendKeys(trn);
             showButton.click();
             waitLoadingMessageBackEnd();
@@ -36,12 +37,14 @@ public class ClientManagementPage extends CommonPageObject {
     }
 
     public void selectClientOnClientProfileList(String trn) throws InterruptedException {
+        Thread.sleep(1000);
         WebElement clientElement = driver.findElement(By.xpath(".//*[@id='clientProfileGrid']//td[2][contains(text(), '"+trn+"')]"));
         clientElement.click();
         waitLoadingMessageBackEnd();
     }
 
     public void selectPolicyFromPolicyDetails(String policyNumber) throws InterruptedException {
+        Thread.sleep(1000);
         WebElement policyElement = driver.findElement(By.xpath(".//*[@id='clientPolicyGrid']//*[contains(text(), '"+policyNumber+"')]"));
         policyElement.click();
         waitLoadingMessageBackEnd();

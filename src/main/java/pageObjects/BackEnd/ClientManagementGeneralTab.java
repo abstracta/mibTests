@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.CommonPageObject;
 import pageObjects.DatePickerPageObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static classes.Utils.by;
@@ -20,6 +21,8 @@ import static classes.Utils.by;
  * Created by USER on 13-Jan-17.
  */
 public class ClientManagementGeneralTab extends CommonPageObject {
+    @FindBy(id = "insurancePersonGrid") private WebElement insuredPersonalTable;
+    @FindBy(xpath = ".//*[@id = 'insurancePersonGrid']/ancestor::rx-grid//a[@class = 'link-next']") private WebElement insuredNextButton;
 
     public ClientManagementGeneralTab(WebDriver driver) throws InterruptedException {
         super(driver);
@@ -29,6 +32,22 @@ public class ClientManagementGeneralTab extends CommonPageObject {
     }
 
     public String getInformationField(String field){
-        return driver.findElement(By.xpath("//*[contains(text(), '"+field+"')]/ancestor::div[@class = 'row bordered']//div[2]//label")).getText();
+        return driver.findElement(By.xpath("//*[contains(text(), '"+field+"')]/ancestor::div[2]/following-sibling::div[1]//label")).getText();
+    }
+
+    public List<String> getInsuredPersonalContactDetailRow(int rowNumber){
+        List<String> row = new ArrayList<>();
+        List<WebElement> tableRows = insuredPersonalTable.findElements(By.tagName("tr"));
+        WebElement rowTr = tableRows.get(rowNumber);
+        List<WebElement> tableColumns = rowTr.findElements(By.tagName("td"));
+
+        for (WebElement value : tableColumns) {
+            row.add(value.getText());
+        }
+
+        if (rowNumber == 10){
+            insuredNextButton.click();
+        }
+        return row;
     }
 }
