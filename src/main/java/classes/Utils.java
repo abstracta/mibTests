@@ -1,13 +1,37 @@
 package classes;
 
 import classes.Enums.Locators;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by USER on 13-Jan-17.
  */
 public class Utils {
+
+    ClassLoader resourceFolder;
+
+    public Utils(){
+        resourceFolder = this.getClass().getClassLoader();
+    }
+
+    public JsonObject readJsonFromResources(String fileName) throws Exception {
+        try {
+            InputStream file = resourceFolder.getResourceAsStream(fileName);
+            JsonParser jsonParser = new JsonParser();
+            JsonObject jsonObject = (JsonObject)jsonParser.parse(
+                    new InputStreamReader(file, "UTF-8"));
+
+            return jsonObject;
+        } catch(Exception ex){
+            throw new Exception("Error trying to read Json file " + ex.getMessage());
+        }
+    }
 
     public static By by(Locators locator, String _value){
         By by = null;

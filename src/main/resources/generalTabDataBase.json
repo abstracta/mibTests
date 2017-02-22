@@ -1,0 +1,215 @@
+{
+	"Policy Start Date" : "01/28/2016",
+	"Policy Status" : "Accepted",
+	"Issuing Company" : "Advantage General Insurance Company Limited",
+	"Date of Birth" : "09/09/1985",
+	"Taxpayer Registration Number" : "874-365-413",
+	"Policy Start time" : "00:00",
+	"Cover Type" : "Comprehensive",
+	"Proposer Name" : "James",
+	"Policy Number" : "PLCY-NYHZWOVL15",
+	"Address Residential" : "name",
+	"Address Work" : "Radix",
+	"Parish" : "St. Andrew",
+	"Parish" : "St. Andrew",
+	"Contact Number Home" : "876-435-4352",
+	"Contact Number Work" : "876-416-3214",
+	"Contact Number Mobile" : "876-543-6541",
+	"Insured Personal & Contact Detail" : [
+		{
+			"rowNumber" : 1,
+			"Insured Name" : "Add",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "6tyut"
+		},
+		{
+			"rowNumber" : 2,
+			"Insured Name" : "James",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "874-365-413"
+		},
+		{
+			"rowNumber" : 3,
+			"Insured Name" : "James",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "874-365-413"
+		},
+		{
+			"rowNumber" : 4,
+			"Insured Name" : "James",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "874-365-413"
+		},
+		{
+			"rowNumber" : 5,
+			"Insured Name" : "James",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "874-365-413"
+		},
+		{
+			"rowNumber" : 6,
+			"Insured Name" : "James",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "874-365-413"
+		},
+		{
+			"rowNumber" : 7,
+			"Insured Name" : "James",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "874-365-413"
+		},
+		{
+			"rowNumber" : 8,
+			"Insured Name" : "James",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "874-365-413"
+		},
+		{
+			"rowNumber" : 9,
+			"Insured Name" : "Add",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "6tyut"
+		},
+		{
+			"rowNumber" : 10,
+			"Insured Name" : "Add",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "6tyut"
+		},
+		{
+			"rowNumber" : 1,
+			"Insured Name" : "Add",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "6tyut"
+		},
+		{
+			"rowNumber" : 2,
+			"Insured Name" : "Add",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "6tyut"
+		},
+		{
+			"rowNumber" : 3,
+			"Insured Name" : "Add",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "6tyut"
+		},
+		{
+			"rowNumber" : 4,
+			"Insured Name" : "Add",
+			"Date Of Birth" : "09/09/1985",
+			"Gender" : "Male",
+			"TRN" : "6tyut"
+		}
+	],
+	"Vehicle details" : [
+		{
+			"rowNumber" : 1,
+			"Vehicle Details" : "2011 Honda Civic",
+			"Colour" : "Black",
+			"Mileage" : "200000",
+			"Seats" : "5",
+			"VIN" : "FGSDGSDG678"
+		}
+	],
+	"Source of funds" : "Salary",
+	"Is Finance" : "No",
+	"Premium Amount" : "113583.32",
+	"Type of Plan":"Full Payment",
+	"Next payment date":"N/A",
+	"Payment History" : [
+		{
+			"rowNumber" : 1,
+			"Payment Date" : "10/18/2016",
+			"Payment Amount" : "113583.32",
+			"Transaction ID" : "2016101820100317125",
+			"Late Fees" : "",
+			"Payment Type" : "2016101820100317125"
+		}
+	],
+	"Excess" : "Not available",
+	"Loss of Use" : "Not available",
+	"Wrecker Fees" : "Not available",
+	"Roadside Assistance" : "Not available",
+	"Uninsured Motorist Coverage" : "Not available",
+	"Comprehensive Plus" : "Not available",
+	"Personal accidents" : "Not available",
+	"Act of God" : "Not available",
+	"Personal effects" : "Not available",
+	"Assist- Accident scene and Breakdown assistance" : "Not available",
+	"Free Annual Valuation" : "Not available",
+	"Windscreen" : "Not available",
+	"Fire Damage to Garage" : "Not available",
+	"Theft Cover" : "Not available",
+	"Indemnity whilst in hand of Motor Trader" : "Not available",
+	"Motor Trade coverage" : "Not available",
+	"Infant Seat Replacement" : "Not available",
+	"Key Replacement" : "Not available",
+	"Limits of Liability" : "Not available",
+	"Personal accidents rider" : "Not available",
+	"Manslaughter" : "Not available",
+	"Windscreen Damage" : "Not available",
+	"Accident Forgiveness" : "Not available",
+	"Flood, Hurricane, Earthquake, Riot, Strike & Civil commotion" : "Not available",
+	"ThirdParty Plus" : "Not available",
+	"Medical expenses" : "Not available",
+	"Advantage 24/7" : "Not available",
+	"Passenger Negligence and Passenger liability" : "Not available",
+	"Protected No Claim Discount" : "Not available",
+	"Authorized repair limit" : "Not available",
+	"Audio Equipment" : "Not available",
+	"Accident plus ( react)" : "Not available",
+	"Malicious Damage" : "Not available",
+	"Coverage for Radio/Tapes" : "Not available",
+	"New Car Replacement" : "Not available",
+	"Hand bag Coverage" : "Not available",
+	"Critcal Illness Cover" : "Not available",
+	"Tracking device installed on the vehicle" : "No",
+	"Do you have valuation/proforma invoice for your vehicle" : "No",
+	"Jamaica Teacher's Association (JTA)" : "No",
+	"Do you have a home owner’s policy?" : "No",
+	"Jamaica Defense Force (JDF)" : "No",
+	"Do you have this policy through Marathon?" : "No", 
+	"Are you a Non-Commissioned JDF Officer?" : "No",
+	"How many years with insurance provider" : "",
+	"Jamaica Constabulary Force (JCF)" : "No",
+	"Please specify provider name" : "",
+	"Jamaica Automobile Association (JAA)" : "No",
+	"Do you have another motor insurance policy?" : "No",
+	"Jamaica Auto Club" : "No",
+	"How many vehicles are currently insured with same provider" : "",
+	"Jamaica Civil Service Association (JCSA)" : "No",
+	"How many years with insurance provider" : "",
+	"Insurance Institute of Jamaica Discount (IIJ)" : "No",
+	"Please specify provider name" : "",
+	"NCD" : "2",
+	"Would you like to apply the NCD to this vehicle?" : "Yes",
+	"Are you presently insured through a broker?" : "No",
+	"Credit/Debit/Cover Note Details" : [
+		{
+			"rowNumber" : 1,
+			"Note Type" : "Cover Note",
+			"Event Name" : "New Policy",
+			"File" : "19083Cover_Note20060_16372.pdf"
+		},
+		{
+			"rowNumber" : 2,
+			"Note Type" : "Debit Note",
+			"Event Name" : "New Policy",
+			"File" : "19083Debit_Note20060_16372.pdf"
+		}
+	]
+}
