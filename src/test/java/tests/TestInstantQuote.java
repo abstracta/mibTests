@@ -4,7 +4,9 @@ import classes.BaseTest;
 import classes.Enums.FieldType;
 import classes.Enums.IntendedUseVehicle;
 import classes.Objects.FieldToComplete;
+import classes.Enums.TestParameters;
 import junit.framework.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.FrontEnd.QuickQuotePageObject;
 import pageObjects.FrontEnd.HomePage;
@@ -18,18 +20,19 @@ import java.util.List;
 public class TestInstantQuote extends BaseTest {
 
     @Test(description = "Create a Instant Quick Quote")
-    public void test() throws Exception {
+    @Parameters(TestParameters.URL)
+    public void test(String url) throws Exception {
+        driver.get(url);
         HomePage homePage = new HomePage(driver);
-        homePage.clickOnQuickQuote();
+        QuickQuotePageObject quickQuote = homePage.clickOnQuickQuote();
 
-        QuickQuotePageObject quickQuote = new QuickQuotePageObject(driver);
         List<FieldToComplete> fields = new ArrayList();
         List<IntendedUseVehicle> carFields = new ArrayList();
 
         // FORM NUMBER 1 //
         fields.add(new FieldToComplete("Year of Manufacture", "1999", FieldType.SELECT_FIELD));
         fields.add(new FieldToComplete("Make of the vehicle", "Acura", FieldType.SELECT_FIELD));
-        fields.add(new FieldToComplete("Model of the vehicle", "3.0CL", FieldType.SELECT_FIELD));
+        fields.add(new FieldToComplete("Model of the vehicle", "3.5RL", FieldType.SELECT_FIELD));
         fields.add(new FieldToComplete("Value of the vehicle ", "30000000", FieldType.TEXTBOX   ));
         fields.add(new FieldToComplete("Is this vehicle left-hand or right-hand drive?", "Left Hand", FieldType.SELECT_FIELD));
         fields.add(new FieldToComplete("Number of seats", "5", FieldType.SELECT_FIELD));
@@ -79,6 +82,5 @@ public class TestInstantQuote extends BaseTest {
         carFields.clear();
 
         Assert.assertTrue("There is no lowest quote for this client", quickQuote.lowestPriceIsDisplayed());
-
     }
 }

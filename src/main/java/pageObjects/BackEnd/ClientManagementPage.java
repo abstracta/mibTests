@@ -18,11 +18,15 @@ public class ClientManagementPage extends CommonPageObject {
     @FindBy(xpath = ".//input[@ng-model='client.trn']") private WebElement trnTextBox;
     @FindBy(xpath = ".//button[@ng-click='getSearchFilteredClients(client)']") private WebElement showButton;
 
-    public ClientManagementPage(WebDriver driver) throws InterruptedException {
+    public ClientManagementPage(WebDriver driver) throws Exception {
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.visibilityOf(showButton));
-        waitLoadingMessageBackEnd();
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 60);
+            wait.until(ExpectedConditions.visibilityOf(showButton));
+            waitLoadingMessageBackEnd();
+        }catch(Exception ex){
+            throw new Exception(ex.getMessage());
+        }
     }
 
     public void findClientByTrn(String trn) throws Exception {
@@ -36,17 +40,26 @@ public class ClientManagementPage extends CommonPageObject {
         }
     }
 
-    public void selectClientOnClientProfileList(String trn) throws InterruptedException {
-        Thread.sleep(1000);
-        WebElement clientElement = driver.findElement(By.xpath(".//*[@id='clientProfileGrid']//td[2][contains(text(), '"+trn+"')]"));
-        clientElement.click();
-        waitLoadingMessageBackEnd();
+    public void selectClientOnClientProfileList(String trn) throws Exception {
+        try {
+            Thread.sleep(1000);
+            WebElement clientElement = driver.findElement(By.xpath(".//*[@id='clientProfileGrid']//td[2][contains(text(), '" + trn + "')]"));
+            clientElement.click();
+            waitLoadingMessageBackEnd();
+        }catch(Exception ex){
+            throw new Exception("There is an error trying to select client " + trn + " from profile list. Error : " + ex.getMessage());
+        }
     }
 
-    public void selectPolicyFromPolicyDetails(String policyNumber) throws InterruptedException {
-        Thread.sleep(1000);
-        WebElement policyElement = driver.findElement(By.xpath(".//*[@id='clientPolicyGrid']//*[contains(text(), '"+policyNumber+"')]"));
-        policyElement.click();
-        waitLoadingMessageBackEnd();
+    public ClientManagementGeneralTab selectPolicyFromPolicyDetails(String policyNumber) throws Exception {
+        try {
+            Thread.sleep(1000);
+            WebElement policyElement = driver.findElement(By.xpath(".//*[@id='clientPolicyGrid']//*[contains(text(), '" + policyNumber + "')]"));
+            policyElement.click();
+            waitLoadingMessageBackEnd();
+        }catch(Exception ex){
+            throw new Exception("Error trying to select policy " + policyNumber + " from Policy Details. Error : " + ex.getMessage());
+        }
+        return new ClientManagementGeneralTab(driver);
     }
 }

@@ -137,7 +137,7 @@
 			"Payment Amount" : "113583.32",
 			"Transaction ID" : "2016101820100317125",
 			"Late Fees" : "",
-			"Payment Type" : "2016101820100317125"
+			"Payment Type" : "Premium Amount"
 		}
 	],
 	"Excess" : "Not available",
@@ -200,13 +200,11 @@
 	"Are you presently insured through a broker?" : "No",
 	"Credit/Debit/Cover Note Details" : [
 		{
-			"rowNumber" : 1,
 			"Note Type" : "Cover Note",
 			"Event Name" : "New Policy",
 			"File" : "19083Cover_Note20060_16372.pdf"
 		},
 		{
-			"rowNumber" : 2,
 			"Note Type" : "Debit Note",
 			"Event Name" : "New Policy",
 			"File" : "19083Debit_Note20060_16372.pdf"

@@ -3,14 +3,15 @@
 
 <suite name="MIBTESTS" verbose="3" >
     <!-- Configuracion del browser y ambiente -->
-    <parameter name="url" value="https://www.mibinsure.com:81/index"></parameter>
-    <parameter name="userName" value="ABSTRACTA"></parameter>
-    <parameter name="pass" value="movistar123"></parameter>
+    <parameter name="url" value="https://www.mibinsure.com"></parameter>
+    <parameter name="urlBackEnd" value="https://www.mibinsure.com:81"></parameter>
+    <parameter name="usernameBackEnd" value="SuperAdmin"></parameter>
+    <parameter name="passwordBackEnd" value="An%!Sm@4(Vm9"></parameter>
     <parameter name="browser" value="Chrome"></parameter>
 
-    <test name="test">
+    <test name="Test">
         <classes>
-            <class name="tests.TestBackEnd"></class>
+            <class name="tests.TestInstantQuote"></class>
         </classes>
     </test>
 </suite>

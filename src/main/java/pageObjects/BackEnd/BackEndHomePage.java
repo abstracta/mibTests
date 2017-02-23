@@ -18,16 +18,21 @@ import static classes.Utils.by;
 public class BackEndHomePage extends CommonPageObject {
     @FindBy(xpath = ".//*[@id='sidebar']//span[contains(text(), 'Client Management')]") private WebElement clientManagementOption;
 
-    public BackEndHomePage(WebDriver driver) throws InterruptedException {
+    public BackEndHomePage(WebDriver driver) throws Exception {
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(by(Locators.CLASS_NAME, "nav-user-photo")));
-        waitLoadingMessageBackEnd();
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 60);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by(Locators.CLASS_NAME, "nav-user-photo")));
+            waitLoadingMessageBackEnd();
+        }catch (Exception ex){
+            throw new Exception(ex.getMessage());
+        }
     }
 
-    public void clickOnClientManagement() throws Exception {
+    public ClientManagementPage clickOnClientManagement() throws Exception {
         try {
             clientManagementOption.click();
+            return new ClientManagementPage(driver);
         }catch(Exception ex){
             throw new Exception("There is an error trying to click on client management button. Error : " + ex.getMessage());
         }

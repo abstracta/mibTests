@@ -15,10 +15,11 @@ public class HomePage extends CommonPageObject {
         super(driver);
     }
 
-    public void clickOnQuickQuote() throws Exception {
+    public QuickQuotePageObject clickOnQuickQuote() throws Exception {
         try {
             getAQuickQuoteButton.click();
             System.out.println("Forms button was clicked");
+            return new QuickQuotePageObject(driver);
         }catch(Exception ex){
             throw new Exception("There is an error clicking on quick quote button. Error : " + ex.getMessage());
         }

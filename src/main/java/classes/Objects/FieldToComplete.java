@@ -43,19 +43,23 @@ public class FieldToComplete {
         return fieldType;
     }
 
-    public void completeField(WebDriver driver) throws InterruptedException {
-        Thread.sleep(1000);
+    public void completeField(WebDriver driver) throws Exception {
+        try {
+            Thread.sleep(1000);
 
-        switch (fieldType){
-            case CHECKBOX:
-                webElement.click();
-                break;
-            case DATEPICKER:
-                ((JavascriptExecutor)driver).executeScript("document.evaluate(\"//*[contains(text(), '"+getFieldName()+"')]/ancestor::div[@class = 'fieldbox']//input\" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()");
-                break;
-            default:
-                webElement.sendKeys(value);
-                break;
+            switch (fieldType) {
+                case CHECKBOX:
+                    webElement.click();
+                    break;
+                case DATEPICKER:
+                    ((JavascriptExecutor) driver).executeScript("document.evaluate(\"//*[contains(text(), '" + getFieldName() + "')]/ancestor::div[@class = 'fieldbox']//input\" ,document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click()");
+                    break;
+                default:
+                    webElement.sendKeys(value);
+                    break;
+            }
+        }catch(Exception ex){
+            throw new Exception("There is an error trying to complete field " + getFieldName() + " with value : " + getValue() + " . Error : " + ex.getMessage());
         }
     }
 

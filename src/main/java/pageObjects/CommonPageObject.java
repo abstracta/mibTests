@@ -29,32 +29,41 @@ public class CommonPageObject {
         PageFactory.initElements(driver, this);
     }
 
-    public String getFieldXpath(FieldToComplete fieldToComplete){
-        String xpath = "//*[contains(text(), '"+fieldToComplete.getFieldName()+"')]/ancestor::div[@class = 'fieldbox']";
-        switch (fieldToComplete.getFieldType()){
-            case TEXTBOX:
-                xpath = xpath + "//input";
-                break;
-            case SELECT_FIELD:
-                xpath = xpath + "//select";
-                break;
-            case CHECKBOX:
-                String otherValue = "";
+    public String getFieldXpath(FieldToComplete fieldToComplete) throws Exception {
+        String xpath = "//*[contains(text(), '" + fieldToComplete.getFieldName() + "')]/ancestor::div[@class = 'fieldbox']";
 
-                if(fieldToComplete.getValue().equals("false"))
-                    otherValue = "No";
-                else
-                    otherValue = "Yes";
+        try {
+            switch (fieldToComplete.getFieldType()) {
+                case TEXTBOX:
+                    xpath = xpath + "//input";
+                    break;
+                case SELECT_FIELD:
+                    xpath = xpath + "//select";
+                    break;
+                case CHECKBOX:
+                    String otherValue = "";
 
-                xpath = xpath + "//input[@value = '"+getValueForRadioButton(fieldToComplete.getValue())+"' or @value = '"+otherValue+"']";
-                break;
+                    if (fieldToComplete.getValue().equals("false"))
+                        otherValue = "No";
+                    else
+                        otherValue = "Yes";
+
+                    xpath = xpath + "//input[@value = '" + getValueForRadioButton(fieldToComplete.getValue()) + "' or @value = '" + otherValue + "']";
+                    break;
+            }
+        }catch(Exception ex){
+            throw new Exception("Error trying to get the field " + fieldToComplete.getFieldName() + " . Error : " + ex.getMessage());
         }
 
         return xpath;
     }
 
     public WebElement findElement(Locators locator, String identificator) throws Exception {
-        return driver.findElement(by(locator, identificator));
+        try {
+            return driver.findElement(by(locator, identificator));
+        }catch(Exception ex){
+            throw new Exception("There is an error trying to find an the element " + identificator + " .Error : " + ex.getMessage());
+        }
     }
 
     public WebElement getField(FieldToComplete fieldToComplete) throws Exception {
@@ -73,37 +82,49 @@ public class CommonPageObject {
         }
     }
 
-    public String getValueForRadioButton(String value){
+    public String getValueForRadioButton(String value) throws Exception {
         String valueOutput = "";
 
-        if (value.equals("true") || value.equals("false")) {
-            valueOutput = value;
-        }else{
-            switch(value){
-                case "Male":
-                    valueOutput = "2468";
-                    break;
-                case "Female":
-                    valueOutput = "2469";
-                    break;
+        try {
+            if (value.equals("true") || value.equals("false")) {
+                valueOutput = value;
+            } else {
+                switch (value) {
+                    case "Male":
+                        valueOutput = "2468";
+                        break;
+                    case "Female":
+                        valueOutput = "2469";
+                        break;
+                }
             }
+        }catch(Exception ex){
+            throw new Exception("There is an error trying to get value from a radio button " + value + " . Error : " + ex.getMessage());
         }
 
         return valueOutput;
     }
 
-    public void waitLoadingMessage(){
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(by(Locators.ID, "loadImage")));
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    public void waitLoadingMessage() throws Exception {
+        try {
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+            WebDriverWait wait = new WebDriverWait(driver, 60);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(by(Locators.ID, "loadImage")));
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        }catch(Exception ex){
+            throw new Exception("Problem waiting the loading message dissapeared. Error : " + ex.getMessage());
+        }
     }
 
-    public void waitLoadingMessageBackEnd() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(by(Locators.XPATH, ".//*[@id='rxload']//img")));
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        Thread.sleep(1000);
+    public void waitLoadingMessageBackEnd() throws Exception {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 60);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(by(Locators.XPATH, ".//*[@id='rxload']//img")));
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            Thread.sleep(1000);
+        }catch(Exception ex){
+            throw new Exception("Problem waiting the loading message in back-end dissapeared. Error : " + ex.getMessage());
+        }
     }
 
 }

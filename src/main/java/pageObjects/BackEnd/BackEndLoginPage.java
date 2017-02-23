@@ -17,13 +17,14 @@ public class BackEndLoginPage extends CommonPageObject {
         super(driver);
     }
 
-    public void login(String username, String password) throws Exception {
+    public BackEndHomePage login(String username, String password) throws Exception {
         try {
             usernameTextBox.sendKeys(username);
             passwordTextBox.sendKeys(password);
             loginButton.click();
             System.out.println("Login succesful");
             waitLoadingMessageBackEnd();
+            return new BackEndHomePage(driver);
         }catch(Exception ex){
             throw new Exception("There is an error trying to login to the Backend. Error : " + ex.getMessage());
         }

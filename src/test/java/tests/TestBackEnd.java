@@ -1,11 +1,13 @@
 package tests;
 
 import classes.BaseTest;
-import classes.Objects.FieldToComplete;
+import classes.Enums.Tables;
+import classes.Enums.TestParameters;
 import classes.Utils;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import junit.framework.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.BackEnd.BackEndHomePage;
 import pageObjects.BackEnd.BackEndLoginPage;
@@ -20,19 +22,17 @@ import java.util.List;
 public class TestBackEnd extends BaseTest {
 
     @Test(description = "Create an Instant Quick Quote")
-    public void test() throws Exception {
+    @Parameters({TestParameters.URL_BACK_END, TestParameters.USERNAME_BACK_END, TestParameters.PASSWORD_BACK_END})
+    public void test(String url, String username, String password) throws Exception {
+        driver.get(url);
+
         BackEndLoginPage loginPage = new BackEndLoginPage(driver);
-        loginPage.login("SuperAdmin", "An%!Sm@4(Vm9");
+        BackEndHomePage homePage = loginPage.login(username, password);
+        ClientManagementPage clientManagementPage = homePage.clickOnClientManagement();
 
-        BackEndHomePage homePage = new BackEndHomePage(driver);
-        homePage.clickOnClientManagement();
-
-        ClientManagementPage clientManagementPage = new ClientManagementPage(driver);
         clientManagementPage.findClientByTrn("874-365-413");
         clientManagementPage.selectClientOnClientProfileList("874-365-413");
-        clientManagementPage.selectPolicyFromPolicyDetails("PLCY-NYHZWOVL15");
-
-        ClientManagementGeneralTab generalTab = new ClientManagementGeneralTab(driver);
+        ClientManagementGeneralTab generalTab = clientManagementPage.selectPolicyFromPolicyDetails("PLCY-NYHZWOVL15");
 
         // This JSON is to simulate a database
         Utils utils = new Utils();
@@ -63,7 +63,7 @@ public class TestBackEnd extends BaseTest {
 
         for (int i = 0; i < listInsuredPersonal.getAsJsonArray().size(); i++) {
             JsonObject personalInsured = listInsuredPersonal.getAsJsonArray().get(i).getAsJsonObject();
-            List<String> information = generalTab.getInsuredPersonalContactDetailRow(personalInsured.get("rowNumber").getAsInt());
+            List<String> information = generalTab.getInformationFromRow(Tables.PERSONAL_CONTACT_DETAIL, personalInsured.get("rowNumber").getAsInt());
 
             Assert.assertTrue("Error in 'Insured Name' Field in row '"+ personalInsured.get("rowNumber") + "' of Insured Personal & Contact Detail table", information.get(0).equals(personalInsured.get("Insured Name").getAsString()));
             Assert.assertTrue("Error in 'Date of Birth' Field in row '"+ personalInsured.get("rowNumber") + "' of Insured Personal & Contact Detail table", information.get(1).equals(personalInsured.get("Date Of Birth").getAsString()));
@@ -72,7 +72,18 @@ public class TestBackEnd extends BaseTest {
         }
 
         //Vehicle Details
-        // Validacion de la tabla fila por fila
+        JsonElement listVehiclesTable = database.get("Vehicle details");
+
+        for (int i = 0; i < listVehiclesTable.getAsJsonArray().size(); i++) {
+            JsonObject vehicle = listVehiclesTable.getAsJsonArray().get(i).getAsJsonObject();
+            List<String> information = generalTab.getInformationFromRow(Tables.VEHICLE_DETAILS, vehicle.get("rowNumber").getAsInt());
+
+            Assert.assertTrue("Error in 'Vehicle Details' Field in row '"+ vehicle.get("rowNumber") + "' of Vehicle Details table", information.get(0).equals(vehicle.get("Vehicle Details").getAsString()));
+            Assert.assertTrue("Error in 'Colour' Field in row '"+ vehicle.get("rowNumber") + "' of Vehicle Details table", information.get(1).equals(vehicle.get("Colour").getAsString()));
+            Assert.assertTrue("Error in 'Mileage' Field in row '"+ vehicle.get("rowNumber") + "' of Vehicle Details table", information.get(2).equals(vehicle.get("Mileage").getAsString()));
+            Assert.assertTrue("Error in 'Seats' Field in row '"+ vehicle.get("rowNumber") + "' of Vehicle Details table", information.get(3).equals(vehicle.get("Seats").getAsString()));
+            Assert.assertTrue("Error in 'VIN' Field in row '"+ vehicle.get("rowNumber") + "' of Vehicle Details table", information.get(4).equals(vehicle.get("VIN").getAsString()));
+        }
 
         //Payment
         Assert.assertTrue("Error in 'Source of funds' field", (generalTab.getInformationField("Source of funds").equals(database.get("Source of funds").getAsString())));
@@ -82,7 +93,18 @@ public class TestBackEnd extends BaseTest {
         Assert.assertTrue("Error in 'Type of Plan' field", (generalTab.getInformationField("Type of Plan").equals(database.get("Type of Plan").getAsString())));
 
         ///Payment History
-        // Validacion de la tabla fila por fila
+        JsonElement listPayments = database.get("Payment History");
+
+        for (int i = 0; i < listPayments.getAsJsonArray().size(); i++) {
+            JsonObject payment = listPayments.getAsJsonArray().get(i).getAsJsonObject();
+            List<String> information = generalTab.getInformationFromRow(Tables.PAYMENT_HISTORY, payment.get("rowNumber").getAsInt());
+
+            Assert.assertTrue("Error in 'Payment Date' Field in row '"+ payment.get("rowNumber") + "' of Payment History table", information.get(0).equals(payment.get("Payment Date").getAsString()));
+            Assert.assertTrue("Error in 'Payment Amount' Field in row '"+ payment.get("rowNumber") + "' of Payment History table", information.get(1).equals(payment.get("Payment Amount").getAsString()));
+            Assert.assertTrue("Error in 'Transaction ID' Field in row '"+ payment.get("rowNumber") + "' of Payment History table", information.get(2).equals(payment.get("Transaction ID").getAsString()));
+            Assert.assertTrue("Error in 'Late Fees' Field in row '"+ payment.get("rowNumber") + "' of Payment History table", information.get(3).equals(payment.get("Late Fees").getAsString()));
+            Assert.assertTrue("Error in 'Payment Type' Field in row '"+ payment.get("rowNumber") + "' of Payment History table", information.get(4).equals(payment.get("Payment Type").getAsString()));
+        }
 
         //Benefits Details
         Assert.assertTrue("Error in 'Excess' field", (generalTab.getInformationField("Excess").equals(database.get("Excess").getAsString())));
@@ -149,7 +171,15 @@ public class TestBackEnd extends BaseTest {
 
 
         //Credit/Debit/Cover Note Details
-        // Validacion de la tabla fila por fila
+        JsonElement listNotes = database.get("Credit/Debit/Cover Note Details");
 
+        for (int i = 0; i < listNotes.getAsJsonArray().size(); i++) {
+            JsonObject note = listNotes.getAsJsonArray().get(i).getAsJsonObject();
+            List<String> information = generalTab.getCreditDebitNoteRow(note.get("Note Type").getAsString());
+
+            Assert.assertTrue("Error in 'Note Type' Field of Credit/Debit/Cover Note Details table", information.get(0).equals(note.get("Note Type").getAsString()));
+            Assert.assertTrue("Error in 'Event Name' Field of Credit/Debit/Cover Note Details table", information.get(1).equals(note.get("Event Name").getAsString()));
+            Assert.assertTrue("Error in 'File' Field of Credit/Debit/Cover Note Details table", information.get(2).equals(note.get("File").getAsString()));
+        }
     }
 }

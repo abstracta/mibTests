@@ -18,32 +18,44 @@ public class DatePickerPageObject extends CommonPageObject {
         super(driver);
     }
 
-    public void clickYear(String year){
-        WebElement yearElement = getYearElement(year);
-        if (yearElement != null){
-            yearElement.click();
-        }else{
-            boolean yearFound = false;
+    public void clickYear(String year) throws Exception {
+        try {
+            WebElement yearElement = getYearElement(year);
+            if (yearElement != null) {
+                yearElement.click();
+            } else {
+                boolean yearFound = false;
 
-            while(!yearFound) {
-                previousYear.click();
-                yearElement = getYearElement(year);
-                if (yearElement != null) {
-                    yearFound = true;
-                    yearElement.click();
+                while (!yearFound) {
+                    previousYear.click();
+                    yearElement = getYearElement(year);
+                    if (yearElement != null) {
+                        yearFound = true;
+                        yearElement.click();
+                    }
                 }
             }
+        }catch(Exception ex){
+            throw new Exception("There is an error trying to select the year " + year + " on the calendar. Error : " + ex.getMessage());
         }
     }
 
-    public void clickMonth(String month){
-        WebElement monthElement = getMonthElement(month);
-        monthElement.click();
+    public void clickMonth(String month) throws Exception {
+        try {
+            WebElement monthElement = getMonthElement(month);
+            monthElement.click();
+        }catch(Exception ex){
+            throw new Exception("There is an error trying to select the month " + month + " on the calendar. Error : " + ex.getMessage());
+        }
     }
 
-    public void clickDay(String day){
-        WebElement dayElement = getDayElement(day);
-        dayElement.click();
+    public void clickDay(String day) throws Exception {
+        try {
+            WebElement dayElement = getDayElement(day);
+            dayElement.click();
+        }catch(Exception ex){
+            throw new Exception("There is an error trying to select the day " + day + " on the calendar. Error : " + ex.getMessage());
+        }
     }
 
     public WebElement getYearElement(String year){
