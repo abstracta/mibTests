@@ -1,13 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+        <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="MIBTESTS" verbose="3" >
+    <suite name="MIBTESTS" verbose="3" >
     <!-- Configuracion del browser y ambiente -->
     <parameter name="url" value="https://www.mibinsure.com"></parameter>
     <parameter name="urlBackEnd" value="https://www.mibinsure.com:81"></parameter>
     <parameter name="usernameBackEnd" value="SuperAdmin"></parameter>
     <parameter name="passwordBackEnd" value="An%!Sm@4(Vm9"></parameter>
     <parameter name="browser" value="Chrome"></parameter>
+
+    <listeners>
+        <listener class-name="reports.HTMLGuiListener"/>
+    </listeners>
 
     <test name="Test">
         <classes>

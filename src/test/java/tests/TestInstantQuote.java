@@ -6,6 +6,7 @@ import classes.Enums.IntendedUseVehicle;
 import classes.Objects.FieldToComplete;
 import classes.Enums.TestParameters;
 import junit.framework.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.FrontEnd.QuickQuotePageObject;
@@ -13,6 +14,7 @@ import pageObjects.FrontEnd.HomePage;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.testng.Reporter;
 
 /**
  * Created by USER on 18-Jan-17.
